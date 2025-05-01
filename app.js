@@ -1,17 +1,13 @@
 import { createServer }  from 'node:http';
+import { join } from 'node:path';
 
 const app = createServer((req, res) => {
-    res.writeHead(206, { 
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Allow-Headers': 'Content-Type'
-    })
+    const dirname = import.meta.dirname;
+    const videoPath = join(dirname, 'cap.america.mp4');
 
-    res.end(JSON.stringify({
-        message: "Hello World"
-    }))
+    console.log(videoPath);
+
+    res.end(videoPath);
 })
 
 app.listen(3000, () => {
